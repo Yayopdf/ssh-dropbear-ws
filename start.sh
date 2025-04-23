@@ -1,9 +1,13 @@
 #!/bin/bash
 
-# Iniciar Dropbear en puertos 22, 81, 443
-dropbear -p 22
-dropbear -p 81
-dropbear -p 443
+# Inicia Dropbear en el puerto 22
+/usr/sbin/dropbear -E -F -p 22 &
 
-# Mostrar logs
+# Inicia Dropbear adicional para WebSocket (puerto 80)
+/usr/sbin/dropbear -E -F -p 80 &
+
+# Mensaje en consola
+echo "Servidor SSH + Dropbear + WebSocket corriendo..."
+
+# Mantener el contenedor vivo
 tail -f /dev/null
